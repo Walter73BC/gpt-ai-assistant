@@ -33,6 +33,7 @@ const createCompletion = ({
   presencePenalty = config.OPENAI_COMPLETION_PRESENCE_PENALTY,
   stop = [
     ` ${PARTICIPANT_HUMAN}:`,
+    ` ${PARTICIPANT_AI}:`,
   ],
 }) => instance.post('/v1/completions', {
   model,
