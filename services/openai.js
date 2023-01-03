@@ -32,7 +32,7 @@ const createCompletion = ({
   frequencyPenalty = config.OPENAI_COMPLETION_FREQUENCY_PENALTY,
   presencePenalty = config.OPENAI_COMPLETION_PRESENCE_PENALTY,
   stop = [
-    ` ${PARTICIPANT_HUMAN}: Hey CCBot `,
+    ` ${PARTICIPANT_HUMAN}:`,
   ],
 }) => instance.post('/v1/completions', {
   model,
