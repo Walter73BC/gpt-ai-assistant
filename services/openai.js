@@ -31,8 +31,8 @@ const createCompletion = ({
   maxTokens = config.OPENAI_COMPLETION_MAX_TOKENS,
   frequencyPenalty = config.OPENAI_COMPLETION_FREQUENCY_PENALTY,
   presencePenalty = config.OPENAI_COMPLETION_PRESENCE_PENALTY,
-  stop = [
-    ` ${PARTICIPANT_HUMAN}:`,
+  stop: [
+    "CCBot:", "User:"
   ],
 }) => instance.post('/v1/completions', {
   model,
