@@ -40,7 +40,7 @@ const createCompletion = ({
   prompt,
   temperature,
   max_tokens: maxTokens,
-  top_p: top_p,
+  top_p: 1,
   frequency_penalty: frequencyPenalty,
   presence_penalty: presencePenalty,
   stop,
