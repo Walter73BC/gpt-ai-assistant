@@ -8,13 +8,31 @@
 
 </div>
 
+## Table of Contents
+
+- [Documentation](#Documentation)
+- [About](#about)
+- [Installation](#installation)
+- [Upgrade](#upgrade)
+- [Commands](#commands)
+- [Environment Variables](#environment-variables)
+- [Debug](#debug)
+- [Development](#development)
+- [Changelog](#changelog)
+- [Credits](#credits)
+- [Related Projects](#related-projects)
+- [License](#license)
+
+## Documentation
+
+- [中文](README.md)
+- [English](README.en.md)
+
 ## About
 
-GPT AI Assistant is a lightweight and extensible application that is implemented using the OpenAI API and LINE Messaging API.
+GPT AI Assistant is an application that is implemented using the OpenAI API and LINE Messaging API. Through the installation process, you can start chatting with your own AI assistant using the LINE mobile app.
 
-Through the installation process, you can start to chat with your own AI assistant using the LINE mobile app.
-
-## Demo
+### Demo
 
 <div align="center">
   <img src="demo/screenshot-en-1.png" width="300"/>
@@ -66,17 +84,56 @@ When the Vercel bot detects a change in the code, it will automatically redeploy
 
 Send commands using the LINE mobile app to perform specific functions.
 
+### General Commands
+
+Name | Alias | Description
+--- | --- | ---
+`Talk` | `/talk` | Talk with AI Assistant.
+`Draw` | `/draw` | Ask AI Assistant to draw a picture.
+`Continue` | `/continue` | Ask AI Assistant to continue the conversation.
+`Activate` | `/activate` | Activate auto-reply. The `VERCEL_ACCESS_TOKEN` environment variable is required.
+`Deactivate` | `/deactivate` | Deactivate auto-reply. The `VERCEL_ACCESS_TOKEN` environment variable is required.
+
+### System Commands
+
 Name | Alias | Description
 --- | --- | ---
 `Command` | `/command` | Show the application commands.
 `Version` | `/version` | Show the application version.
-`Talk` | `/talk` | Talk with AI Assistant.
-`Draw` | `/draw` | Ask AI Assistant to draw a picture.
-`Summarize` | `/summarize` | Ask AI Assistant to summarize the dialogue.
-`Continue` | `/continue` | Ask AI Assistant to continue the conversation.
-`Activate` | `/activate` | Activate auto-reply. The `VERCEL_ACCESS_TOKEN` environment variable is required.
-`Deactivate` | `/deactivate` | Deactivate auto-reply. The `VERCEL_ACCESS_TOKEN` environment variable is required.
+`Documentation` | `/doc` | Show the documentation.
+`Report` | `/report` | Report issues.
 `Restart` | `/restart` | Deploy the application. The `VERCEL_DEPLOY_HOOK_URL` environment variable is required.
+
+### Sum Commands
+
+Name | Alias | Description
+--- | --- | ---
+`Sum` | `/sum` | Ask AI Assistant to give a "summarize" response
+`Advise` | `/advise` | Ask AI Assistant to give a "advise" response
+`Apologize` | `/apologize` | Ask AI Assistant to give a "apologize" response
+`Blame` | `/blame` | Ask AI Assistant to give a "blame" response
+`Comfort` | `/comfort` | Ask AI Assistant to give a "comfort" response
+`Complain` | `/complain` | Ask AI Assistant to give a "complain" response
+`Laugh` | `/laugh` | Ask AI Assistant to give a "laugh" response
+`Encourage` | `/encourage` | Ask AI Assistant to give a "encourage" response
+
+### Analyze Commands
+
+Name | Alias | Description
+--- | --- | ---
+`Analyze` | `/analyze` | Ask AI Assistant to analyze
+`Analyze literarily` | `/analyze-literarily` | Ask AI Assistant to analyze literarily
+`Analyze mathematically` | `/analyze-mathematically` | Ask AI Assistant to analyze mathematically
+`Analyze numerologically` | `/analyze-numerologically` | Ask AI Assistant to analyze numerologically
+`Analyze philosophically` | `/analyze-philosophically` | Ask AI Assistant to analyze philosophically
+`Analyze psychologically` | `/analyze-psychologically` | Ask AI Assistant to analyze psychologically
+
+### Translate Commands
+
+Name | Alias | Description
+--- | --- | ---
+`Translate to English` | `/translate-to-en` | Ask AI Assistant to translate text to English
+`Translate to Japanese` | `/translate-to-ja` | Ask AI Assistant to translate text to Japanese
 
 ## Environment Variables
 
@@ -87,8 +144,10 @@ Name | Default Value | Description
 `APP_DEBUG` | `false` | Print prompt to console. The value must be `true` of `false`.
 `APP_WEBHOOK_PATH` | `/webhook` | Custom webhook URL path of application.
 `APP_LANG` | `zh` | Application language. The value must be one of `zh`, `en` or `ja`.
-`SETTING_AI_NAME` | `AI` | Name of AI Assistant. This is used to call AI Assistant when status is deactivated.
-`SETTING_AI_ACTIVATED` | `null` | Status of AI Assistant. Controlled by application.
+`APP_MAX_GROUPS` | `1` | Maximum groups. The `VERCEL_ACCESS_TOKEN` environment variable is required.
+`APP_MAX_USERS` | `5` | Maximum users. The `VERCEL_ACCESS_TOKEN` environment variable is required.
+`BOT_NAME` | `AI` | Name of AI Assistant. This is used to call AI Assistant when auto-reply is deactivated.
+`VERCEL_PROJECT_NAME` | `gpt-ai-assistant` | Custom Vercel project name. You can use this environment variable when the Vercel project name differs from the GitHub project name.
 `VERCEL_ACCESS_TOKEN` | `null` | Vercel [access token](/demo/vercel-access-token.png)
 `VERCEL_DEPLOY_HOOK_URL` | `null` | Vercel [deploy hook URL](/demo/vercel-deploy-hook-url.png)
 `OPENAI_API_KEY` | `null` | OpenAI [API key](/demo/openai-api-key.png)
@@ -151,9 +210,9 @@ Check the results.
 
   console.info
     === 000001 ===
-      
-    Human: 嗨
-    AI: OK!
+
+    Human: 嗨！
+    AI: 好的！
 
 Test Suites: 1 passed, 1 total
 Tests:       1 passed, 1 total
@@ -175,7 +234,7 @@ Set the environment variables as follows:
 APP_DEBUG=true
 APP_PORT=3000
 
-VERCEL_GIT_REPO_SLUG=gpt-ai-assistant
+VERCEL_PROJECT_NAME=gpt-ai-assistant
 VERCEL_ACCESS_TOKEN=<your_vercel_access_token>
 
 OPENAI_API_KEY=<your_openai_api_key>
@@ -203,14 +262,13 @@ Send a message from the LINE mobile app.
 Check the results.
 
 ```bash
-> gpt-ai-assistant@1.0.0 dev
+> gpt-ai-assistant@0.0.0 dev
 > node api/index.js
 
 === 0x1234 ===
 
-AI: 哈囉！
-Human: 嗨？
-AI: 很高興見到你！有什麼可以為你服務的嗎？
+Memo: 嗨
+AI: 你好嗎？
 ```
 
 ### Using Docker
@@ -227,7 +285,7 @@ Set the environment variables as follows:
 APP_DEBUG=true
 APP_PORT=3000
 
-VERCEL_GIT_REPO_SLUG=gpt-ai-assistant
+VERCEL_PROJECT_NAME=gpt-ai-assistant
 VERCEL_ACCESS_TOKEN=<your_vercel_access_token>
 
 OPENAI_API_KEY=<your_openai_api_key>
@@ -249,7 +307,7 @@ Detailed changes for each release are documented in the [release notes](https://
 ## Credits
 
 - [jayer95](https://github.com/jayer95) - Debugging and testing
-- [kkdai/LINE-Bot-ChatSummarizer](https://github.com/kkdai/LINE-Bot-ChatSummarizer) - Idea of summarize command
+- [kkdai/LINE-Bot-ChatSummarizer](https://github.com/kkdai/LINE-Bot-ChatSummarizer) - Idea of "sum" command
 - [All other contributors](https://github.com/memochou1993/gpt-ai-assistant/graphs/contributors)
 
 ## Related Projects
